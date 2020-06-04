@@ -11,6 +11,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Globalization;
+using System.IO;
 
 namespace MySocketServer
 {
@@ -144,6 +145,10 @@ namespace MySocketServer
                     frd.ClearBuffer();
                     AsyncCallback callback = new AsyncCallback(ReceiveCallback);
                     frd.socket.BeginReceive(frd.Rcvbuffer, 0, frd.Rcvbuffer.Length, SocketFlags.None, callback, frd);
+
+                    TextWriter tw = new StreamWriter("C:/Users/jerry/Desktop/data.txt", true);
+                    tw.WriteLine(data);
+                    tw.Close();
                 }
             }
             catch
@@ -151,6 +156,8 @@ namespace MySocketServer
 
             }
         }
+
+
 
         /*private void SendData(MyFriend frd, string data)
         {
