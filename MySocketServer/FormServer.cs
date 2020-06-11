@@ -129,7 +129,6 @@ namespace MySocketServer
         }
         private void ReceiveCallback(IAsyncResult ar)
         {
-            var csv = new StringBuilder();
             MyFriend frd = (MyFriend)ar.AsyncState;
             try
             {
@@ -147,10 +146,16 @@ namespace MySocketServer
                     AsyncCallback callback = new AsyncCallback(ReceiveCallback);
                     frd.socket.BeginReceive(frd.Rcvbuffer, 0, frd.Rcvbuffer.Length, SocketFlags.None, callback, frd);
 
-                    TextWriter tw = new StreamWriter("C:/Users/jerry/Desktop/data.csv", true);
+                    TextWriter tw = new StreamWriter("C:/Users/jerry/Desktop/data.csv", false);
+
                     tw.WriteLine(data);
                     tw.Close();
+
+
                 }
+
+
+
             }
             catch
             {
