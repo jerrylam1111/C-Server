@@ -140,7 +140,7 @@ namespace MySocketServer
                 else
                 {
                     string data = Encoding.UTF8.GetString(frd.Rcvbuffer, 0, i);
-                    data = string.Format("From[{0}]:{1}", frd.socket.RemoteEndPoint.ToString(), data);
+                    data = string.Format("{0}",data);
                     listBoxStatu.Invoke(AppendString, data);
                     frd.ClearBuffer();
                     AsyncCallback callback = new AsyncCallback(ReceiveCallback);
